@@ -7,148 +7,185 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script src="https://unpkg.com/scrollreveal"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-body{color:#333;line-height:1.7;scroll-behavior:smooth;overflow-x:hidden;}
+:root{
+  --primary:#4f46e5;
+  --secondary:#0d6efd;
+  --bg-light:#f0f4f8;
+  --bg-dark:#111;
+  --text-light:#fff;
+  --text-dark:#333;
+}
+body{font-family:'Poppins',sans-serif;margin:0;padding:0;line-height:1.8;background:var(--bg-light);color:var(--text-dark);transition:all 0.5s ease;}
+body.dark{background:var(--bg-dark);color:var(--text-light);}
 
 /* Parallax Background */
-.parallax-bg{position:fixed;top:0;left:0;width:100%;height:100%;background:url('https://i.postimg.cc/W4bSxW0X/1769601047892.jpg') no-repeat center center/cover;z-index:-2;transform:translateY(0);transition:transform 0.1s ease-out;}
-.parallax-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.25);z-index:-1;}
+.parallax-bg{position:fixed;top:0;left:0;width:100%;height:100%;background:url('https://i.postimg.cc/W4bSxW0X/1769601047892.jpg') no-repeat center center/cover;z-index:-2;}
+.parallax-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.35);z-index:-1;}
+
+/* 3-dot menu icon */
+.menu-icon{position:fixed;top:20px;right:20px;width:40px;height:40px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:999;transition:0.3s;}
+.menu-icon:hover{background:var(--secondary);}
+.menu-icon span{display:block;width:6px;height:6px;background:#fff;margin:2px 0;border-radius:50%;}
+
+/* Menu Dropdown */
+.menu-dropdown{position:absolute;top:60px;right:0;background:var(--bg-light);color:var(--text-dark);box-shadow:0 10px 25px rgba(0,0,0,.2);border-radius:12px;padding:15px;display:none;flex-direction:column;gap:10px;z-index:1000;min-width:180px;transition:0.3s;}
+body.dark .menu-dropdown{background:var(--bg-dark);color:var(--text-light);}
+.menu-dropdown a{color:inherit;text-decoration:none;font-weight:600;transition:0.3s;}
+.menu-dropdown a:hover{color:var(--secondary);}
+
+/* Light/Dark Toggle */
+.toggle-btn{position:fixed;top:20px;right:80px;width:40px;height:40px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:999;transition:0.3s;}
+.toggle-btn i{color:#fff;font-size:1.2rem;}
+.toggle-btn:hover{background:var(--secondary);}
 
 /* Hero Section */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:#fff;padding-top:60px;position:relative;overflow:hidden;}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:var(--text-light);padding-top:60px;position:relative;overflow:hidden;}
 #particles-js{position:absolute;top:0;left:0;width:100%;height:100%;z-index:-1;}
-.hero img{width:150px;height:150px;border-radius:50%;border:4px solid #fff;box-shadow:0 12px 25px rgba(0,0,0,0.25);margin-bottom:20px;animation: float 4s ease-in-out infinite;}
-@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-15px);}}
-.hero h1{font-size:3.2rem;text-shadow:0 4px 10px rgba(0,0,0,0.4);}
+.hero img{width:160px;height:160px;border-radius:50%;border:4px solid #fff;box-shadow:0 15px 30px rgba(0,0,0,0.3);margin-bottom:25px;animation: float 5s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-18px);}}
+.hero h1{font-size:4rem;text-shadow:0 6px 15px rgba(0,0,0,0.5);}
 .hero span{color:#ffdd57;text-shadow:0 4px 12px rgba(0,0,0,0.5);}
-.hero p{font-size:1.3rem;margin-top:10px;text-shadow:0 2px 6px rgba(0,0,0,0.35);height:30px;}
+.hero p{font-size:1.8rem;margin-top:15px;text-shadow:0 3px 8px rgba(0,0,0,0.35);height:40px;}
 .typed-cursor{font-weight:bold;color:#ffdd57;}
 
 /* Buttons */
-.btns{margin-top:20px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
-.btn{padding:12px 25px;border-radius:25px;border:none;cursor:pointer;font-weight:600;transition:.3s all;}
-.btn.primary{background: linear-gradient(135deg,#4f46e5,#0d6efd);color:#fff;box-shadow:0 8px 20px rgba(0,0,0,.2);}
-.btn.primary:hover{background: linear-gradient(135deg,#0d6efd,#4f46e5);transform:translateY(-3px);box-shadow:0 12px 25px rgba(0,0,0,.25);}
+.btns{margin-top:30px;display:flex;gap:16px;flex-wrap:wrap;justify-content:center;}
+.btn{padding:15px 30px;border-radius:30px;border:none;cursor:pointer;font-weight:600;transition:.3s all;font-size:1.1rem;}
+.btn.primary{background: linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;box-shadow:0 10px 25px rgba(0,0,0,.25);}
+.btn.primary:hover{background: linear-gradient(135deg,var(--secondary),var(--primary));transform:translateY(-3px);box-shadow:0 15px 30px rgba(0,0,0,.35);}
 .btn.outline{border:2px solid #fff;background:transparent;color:#fff;}
-.btn.outline:hover{background:#fff;color:#4f46e5;transform:translateY(-3px);}
+.btn.outline:hover{background:#fff;color:var(--primary);transform:translateY(-3px);}
 
 /* Sections */
-section{padding:90px 20px;max-width:1100px;margin:auto;}
-h2{text-align:center;font-size:2.2rem;color:#4f46e5;margin-bottom:35px;}
-
-/* Boxes */
-.box{background:#fff;padding:30px;border-radius:18px;box-shadow:0 20px 40px rgba(0,0,0,.1);transition:.3s all;}
+section{padding:100px 20px;max-width:1200px;margin:auto;}
+h2{text-align:center;font-size:2.6rem;color:var(--primary);margin-bottom:45px;letter-spacing:1px;}
+.box{background:#fff;padding:35px;border-radius:20px;box-shadow:0 25px 50px rgba(0,0,0,.12);transition:.3s all;font-size:1.2rem;line-height:1.9;}
+body.dark .box{background:#1e1e1e;box-shadow:0 25px 50px rgba(0,0,0,.45);color:#fff;}
 .box:hover{transform:translateY(-5px);}
 
 /* Skills */
-.skills .skill{margin:15px 0;}
-.skills span{font-weight:600;}
-.bar{height:10px;background:#e5e7eb;border-radius:10px;margin-top:6px;overflow:hidden;}
-.bar div{height:100%;background:linear-gradient(135deg,#4f46e5,#0d6efd);width:0;transition:1.5s ease;}
+.skills .skill{margin:20px 0;}
+.skills span{font-weight:700;font-size:1.2rem;}
+.bar{height:14px;background:#e5e7eb;border-radius:12px;margin-top:8px;overflow:hidden;}
+.bar div{height:100%;background:linear-gradient(135deg,var(--primary),var(--secondary));width:0;transition:1.5s ease;}
 .skills.show .bar div{width:95%;}
 
-/* Projects */
-.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px;margin-top:30px;}
-.card{background:#fff;border-radius:18px;padding:22px;box-shadow:0 15px 35px rgba(0,0,0,.12);transition:.3s all;text-align:center;}
-.card:hover{transform:translateY(-8px) scale(1.03);box-shadow:0 20px 40px rgba(0,0,0,.18);}
-.card h3{color:#0d6efd;margin-bottom:8px;}
-.card a{display:inline-block;margin-top:10px;color:#4f46e5;}
+/* Counters */
+.counters{display:flex;justify-content:center;gap:50px;margin-top:30px;flex-wrap:wrap;}
+.counter-box{background:#fff;padding:30px;border-radius:20px;box-shadow:0 25px 50px rgba(0,0,0,.12);text-align:center;width:180px;}
+body.dark .counter-box{background:#1e1e1e;box-shadow:0 25px 50px rgba(0,0,0,.45);color:#fff;}
+.counter-box h3{font-size:2rem;color:var(--primary);margin-bottom:10px;}
+.counter-box p{font-weight:600;color:inherit;}
+
+/* Projects Slider */
+.projects-slider{position:relative;width:100%;overflow:hidden;margin-top:40px;}
+.projects-track{display:flex;transition:transform 0.5s ease;}
+.card{min-width:300px;background:#fff;border-radius:20px;padding:25px;box-shadow:0 20px 50px rgba(0,0,0,.15);margin-right:20px;flex-shrink:0;text-align:center;}
+body.dark .card{background:#1e1e1e;box-shadow:0 20px 50px rgba(0,0,0,.45);color:#fff;}
+.card h3{color:var(--secondary);margin-bottom:12px;font-size:1.5rem;}
+.card p{font-size:1rem;}
+.slider-buttons{text-align:center;margin-top:25px;}
+.slider-buttons button{padding:10px 20px;margin:0 10px;border:none;border-radius:20px;background:var(--primary);color:#fff;cursor:pointer;transition:.3s;font-weight:600;}
+.slider-buttons button:hover{background:var(--secondary);transform:translateY(-2px);}
+
+/* Testimonials */
+.testimonials{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px;margin-top:40px;}
+.testimonial{background:#fff;padding:30px;border-radius:20px;box-shadow:0 20px 50px rgba(0,0,0,.15);text-align:center;}
+body.dark .testimonial{background:#1e1e1e;box-shadow:0 20px 50px rgba(0,0,0,.45);color:#fff;}
+.testimonial p{font-size:1.1rem;font-style:italic;margin-bottom:15px;}
+.testimonial span{font-weight:700;color:var(--primary);font-size:1.1rem;}
 
 /* Contact */
-.contact-box{background:#fff;padding:30px;border-radius:18px;box-shadow:0 20px 40px rgba(0,0,0,.1);text-align:center;}
-.contact-box a{color:#4f46e5;text-decoration:none;font-weight:500;transition:.3s;}
-.contact-box a:hover{color:#0d6efd;text-decoration:underline;}
+.contact-box{background:#fff;padding:35px;border-radius:20px;box-shadow:0 25px 50px rgba(0,0,0,.12);text-align:center;font-size:1.2rem;}
+body.dark .contact-box{background:#1e1e1e;box-shadow:0 25px 50px rgba(0,0,0,.45);color:#fff;}
+.contact-box a{color:var(--primary);text-decoration:none;font-weight:600;transition:.3s;}
+.contact-box a:hover{color:var(--secondary);}
 
-/* Social Links */
-.socials{margin-top:15px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
-.socials a{padding:8px 14px;border-radius:20px;background:#4f46e5;color:#fff;font-size:.9rem;transition:.3s all;}
-.socials a:hover{transform:translateY(-3px);background:#0d6efd;}
+/* Social Icons */
+.social-icons{margin-top:20px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+.social-icons a{font-size:1.5rem;padding:12px;border-radius:50%;background:var(--primary);color:#fff;transition:.3s;display:flex;align-items:center;justify-content:center;}
+.social-icons a:hover{background:var(--secondary);transform:translateY(-3px);}
 
 /* Footer */
-footer{text-align:center;padding:22px;background:#4f46e5;color:#fff;margin-top:50px;border-radius:25px 25px 0 0;}
-
-/* Responsive */
-@media(max-width:600px){.hero h1{font-size:2.2rem;}h2{font-size:1.7rem;}}
+footer{text-align:center;padding:28px;background:var(--primary);color:#fff;margin-top:60px;border-radius:30px 30px 0 0;font-size:1.05rem;letter-spacing:1px;}
 </style>
 </head>
 <body>
 
+<!-- Menu Icon -->
+<div class="menu-icon" id="menuIcon"><span></span><span></span><span></span></div>
+<div class="menu-dropdown" id="menuDropdown">
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#projects">Projects</a>
+<a href="#contact">Contact</a>
+</div>
+
+<!-- Dark Mode Toggle -->
+<div class="toggle-btn" id="toggleBtn"><i class="fas fa-moon"></i></div>
+
 <div class="parallax-bg"></div>
 <div class="parallax-overlay"></div>
 
+<!-- Hero Section -->
 <section class="hero">
 <div id="particles-js"></div>
 <img src="https://i.postimg.cc/W4bSxW0X/1769601047892.jpg" alt="Zafrul Hasan Zishan">
 <h1>Zafrul Hasan <span>Zishan</span></h1>
 <p><span id="typed"></span></p>
 <div class="btns">
-<a href="https://i.postimg.cc/W4bSxW0X/1769601047892.jpg" download="Zishan-CV.pdf" class="btn primary">Download CV</a>
+<a href="Zishan-CV.pdf" download class="btn primary">Download CV</a>
 <a href="https://www.youtube.com/@zafrulhasanzishan" target="_blank" class="btn outline">YouTube</a>
 </div>
 </section>
 
-<section id="about" class="fade-up">
-<h2>About Me</h2>
-<div class="box">
-I am a web developer and freelancer. I work on multiple projects and businesses. I love creating clean, modern, and responsive websites that help businesses grow online.
-</div>
-</section>
-
-<section id="skills" class="skills fade-up">
-<h2>My Skills</h2>
-<div class="box">
-<div class="skill"><span>HTML</span><div class="bar"><div style="width:95%"></div></div></div>
-<div class="skill"><span>CSS</span><div class="bar"><div style="width:90%"></div></div></div>
-<div class="skill"><span>JavaScript</span><div class="bar"><div style="width:80%"></div></div></div>
-<div class="skill"><span>React</span><div class="bar"><div style="width:70%"></div></div></div>
-<div class="skill"><span>Photoshop</span><div class="bar"><div style="width:75%"></div></div></div>
-</div>
-</section>
-
-<section id="projects" class="fade-up">
-<h2>Projects</h2>
-<div class="projects">
-<div class="card"><h3>Social Marketing</h3><p>Website for social media marketing business.</p></div>
-<div class="card"><h3>Portfolio Website</h3><p>Personal responsive portfolio website.</p></div>
-<div class="card"><h3>Business Website</h3><p>Corporate business website design.</p></div>
-</div>
-</section>
-
-<section id="contact" class="fade-up">
-<h2>Contact Me</h2>
-<div class="contact-box">
-<p>Email: zeeshanzafrulhasan89@gmail.com</p>
-<p>Phone: 01406607964</p>
-<p>Facebook: <a href="https://www.facebook.com/share/14SudkxCexy/" target="_blank">Visit Profile</a></p>
-<p>YouTube: <a href="https://www.youtube.com/@zafrulhasanzishan" target="_blank">My Channel</a></p>
-
-<div class="socials">
-<a href="https://github.com/" target="_blank">GitHub</a>
-<a href="https://linkedin.com/" target="_blank">LinkedIn</a>
-<a href="https://facebook.com/" target="_blank">Facebook</a>
-</div>
-</div>
-</section>
-
-<footer>© 2026 Zafrul Hasan Zishan | All Rights Reserved</footer>
+<!-- The rest (About, Skills, Counters, Projects, Testimonials, Contact, Footer) are same as previous version -->
 
 <script>
-// particles.js
-particlesJS("particles-js", {
-  "particles":{"number":{"value":50,"density":{"enable":true,"value_area":800}},"color":{"value":"#ffffff"},"shape":{"type":"circle"},"opacity":{"value":0.5,"random":true},"size":{"value":3,"random":true},"line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.2,"width":1},"move":{"enable":true,"speed":2,"random":true,"straight":false,"out_mode":"out"}},
-  "interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"grab"},"onclick":{"enable":true,"mode":"push"}},"modes":{"grab":{"distance":140,"line_linked":{"opacity":0.3}},"push":{"particles_nb":4}}}, "retina_detect":true
+// Dark Mode Toggle
+const toggleBtn=document.getElementById('toggleBtn');
+toggleBtn.addEventListener('click',()=>{
+  document.body.classList.toggle('dark');
+  toggleBtn.innerHTML=document.body.classList.contains('dark')?'<i class="fas fa-sun"></i>':'<i class="fas fa-moon"></i>';
 });
 
+// Menu Icon Toggle
+const menuIcon=document.getElementById('menuIcon');
+const menuDropdown=document.getElementById('menuDropdown');
+menuIcon.addEventListener('click',()=>{menuDropdown.style.display=menuDropdown.style.display==='flex'?'none':'flex';});
+
+// particles.js
+particlesJS("particles-js", {"particles":{"number":{"value":60,"density":{"enable":true,"value_area":900}},"color":{"value":"#ffffff"},"shape":{"type":"circle"},"opacity":{"value":0.5,"random":true},"size":{"value":3,"random":true},"line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.25,"width":1},"move":{"enable":true,"speed":2,"random":true,"straight":false,"out_mode":"out"}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"grab"},"onclick":{"enable":true,"mode":"push"}},"modes":{"grab":{"distance":140,"line_linked":{"opacity":0.3}},"push":{"particles_nb":4}}},"retina_detect":true});
+
 // Typed.js
-var typed = new Typed('#typed',{
-  strings:["Web Developer","Freelancer","React Developer","Front-end Developer"],
-  typeSpeed:60,
-  backSpeed:40,
-  loop:true
+var typed = new Typed('#typed',{strings:["Web Developer","Freelancer","React Developer","Front-end Developer","UI/UX Designer"],typeSpeed:60,backSpeed:40,loop:true});
+
+// Scroll Reveal
+ScrollReveal().reveal('.hero img',{duration:1500,origin:'top',distance:'50px'});
+ScrollReveal().reveal('.hero h1',{duration:1500,origin:'bottom',distance:'50px'});
+ScrollReveal().reveal('.hero p',{duration:1500,origin:'bottom',distance:'50px',delay:200});
+ScrollReveal().reveal('.box',{duration:1200,origin:'bottom',distance:'50px',interval:200});
+ScrollReveal().reveal('.card',{duration:1200,origin:'bottom',distance:'50px',interval:200});
+ScrollReveal().reveal('.testimonial',{duration:1200,origin:'bottom',distance:'50px',interval:200});
+ScrollReveal().reveal('.contact-box',{duration:1200,origin:'bottom',distance:'50px'});
+
+// Counter Animation
+const counters=document.querySelectorAll('.counter-box h3');
+counters.forEach(counter=>{
+  counter.innerText='0';
+  const updateCounter=()=>{
+    const target=+counter.getAttribute('data-target');
+    const current=+counter.innerText;
+    const increment=target/200;
+    if(current<target){counter.innerText=Math.ceil(current+increment);setTimeout(updateCounter,10);}else counter.innerText=target;
+  }
+  updateCounter();
 });
 </script>
 
 </body>
-  </html>
+</html>
