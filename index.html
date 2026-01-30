@@ -7,7 +7,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-<script src="https://unpkg.com/scrollreveal"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
@@ -48,12 +47,6 @@ h2{text-align:center;font-size:2.6rem;color:#4f46e5;margin-bottom:45px;letter-sp
 .bar{height:14px;background:#e5e7eb;border-radius:12px;margin-top:8px;overflow:hidden;}
 .bar div{height:100%;background:linear-gradient(135deg,#4f46e5,#0d6efd);width:0;transition:1.5s ease;}
 .skills.show .bar div{width:95%;}
-
-/* Counters */
-.counters{display:flex;justify-content:center;gap:50px;margin-top:30px;flex-wrap:wrap;}
-.counter-box{background:#fff;padding:30px;border-radius:20px;box-shadow:0 25px 50px rgba(0,0,0,.12);text-align:center;width:180px;}
-.counter-box h3{font-size:2rem;color:#0d6efd;margin-bottom:10px;}
-.counter-box p{font-weight:600;}
 
 /* Projects Slider */
 .projects-slider{position:relative;width:100%;overflow:hidden;margin-top:40px;}
@@ -108,7 +101,7 @@ footer{text-align:center;padding:28px;background:#4f46e5;color:#fff;margin-top:6
 <section id="about">
 <h2>About Me</h2>
 <div class="box">
-I am <strong>Zafrul Hasan Zishan</strong>, a passionate web developer and freelancer. I specialize in modern, responsive, and user-friendly websites using HTML, CSS, JavaScript, React, and Photoshop. I deliver high-quality digital solutions for business growth.
+I am <strong>Zafrul Hasan Zishan</strong>, a passionate and professional web developer and freelancer. I specialize in creating modern, responsive, and user-friendly websites using HTML, CSS, JavaScript, React, and Photoshop. I am dedicated to delivering high-quality digital solutions that help businesses grow and individuals build strong online presence.
 </div>
 </section>
 
@@ -121,13 +114,6 @@ I am <strong>Zafrul Hasan Zishan</strong>, a passionate web developer and freela
 <div class="skill"><span>React</span><div class="bar"><div style="width:75%"></div></div></div>
 <div class="skill"><span>Photoshop</span><div class="bar"><div style="width:80%"></div></div></div>
 </div>
-</section>
-
-<section class="counters">
-<div class="counter-box"><h3 data-target="35">0</h3><p>Projects Completed</p></div>
-<div class="counter-box"><h3 data-target="20">0</h3><p>Clients Served</p></div>
-<div class="counter-box"><h3 data-target="1500">0</h3><p>Hours Worked</p></div>
-<div class="counter-box"><h3 data-target="5">0</h3><p>Awards Won</p></div>
 </section>
 
 <section id="projects">
@@ -175,42 +161,33 @@ I am <strong>Zafrul Hasan Zishan</strong>, a passionate web developer and freela
 
 <script>
 // particles.js
-particlesJS("particles-js", {"particles":{"number":{"value":60,"density":{"enable":true,"value_area":900}},"color":{"value":"#ffffff"},"shape":{"type":"circle"},"opacity":{"value":0.5,"random":true},"size":{"value":3,"random":true},"line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.25,"width":1},"move":{"enable":true,"speed":2,"random":true,"straight":false,"out_mode":"out"}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"grab"},"onclick":{"enable":true,"mode":"push"}},"modes":{"grab":{"distance":140,"line_linked":{"opacity":0.3}},"push":{"particles_nb":4}}},"retina_detect":true});
+particlesJS("particles-js", {
+  "particles":{"number":{"value":60,"density":{"enable":true,"value_area":900}},"color":{"value":"#ffffff"},"shape":{"type":"circle"},"opacity":{"value":0.5,"random":true},"size":{"value":3,"random":true},"line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.25,"width":1},"move":{"enable":true,"speed":2,"random":true,"straight":false,"out_mode":"out"}},
+  "interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"grab"},"onclick":{"enable":true,"mode":"push"}},"modes":{"grab":{"distance":140,"line_linked":{"opacity":0.3}},"push":{"particles_nb":4}}}, "retina_detect":true
+});
 
 // Typed.js
-var typed = new Typed('#typed',{strings:["Web Developer","Freelancer","React Developer","Front-end Developer","UI/UX Designer"],typeSpeed:60,backSpeed:40,loop:true});
+var typed = new Typed('#typed',{
+  strings:["Web Developer","Freelancer","React Developer","Front-end Developer","UI/UX Designer"],
+  typeSpeed:60,
+  backSpeed:40,
+  loop:true
+});
 
 // Projects Slider
 const track = document.querySelector('.projects-track');
 const prevBtn = document.getElementById('prev');
 const nextBtn = document.getElementById('next');
 let index = 0;
-nextBtn.addEventListener('click', ()=>{index++;if(index>track.children.length-1) index=0;track.style.transform=`translateX(${-index*320}px)`;});
-prevBtn.addEventListener('click', ()=>{index--;if(index<0) index=track.children.length-1;track.style.transform=`translateX(${-index*320}px)`;});
-
-// Scroll Reveal
-ScrollReveal().reveal('.hero img',{duration:1500,origin:'top',distance:'50px'});
-ScrollReveal().reveal('.hero h1',{duration:1500,origin:'bottom',distance:'50px'});
-ScrollReveal().reveal('.hero p',{duration:1500,origin:'bottom',distance:'50px',delay:200});
-ScrollReveal().reveal('.box',{duration:1200,origin:'bottom',distance:'50px',interval:200});
-ScrollReveal().reveal('.card',{duration:1200,origin:'bottom',distance:'50px',interval:200});
-ScrollReveal().reveal('.testimonial',{duration:1200,origin:'bottom',distance:'50px',interval:200});
-ScrollReveal().reveal('.contact-box',{duration:1200,origin:'bottom',distance:'50px'});
-
-// Counter Animation
-const counters = document.querySelectorAll('.counter-box h3');
-counters.forEach(counter=>{
-  counter.innerText = '0';
-  const updateCounter=()=>{
-    const target = +counter.getAttribute('data-target');
-    const current = +counter.innerText;
-    const increment = target/200;
-    if(current<target){
-      counter.innerText = Math.ceil(current+increment);
-      setTimeout(updateCounter,10);
-    } else counter.innerText = target;
-  }
-  updateCounter();
+nextBtn.addEventListener('click', ()=>{
+index++;
+if(index > track.children.length-1) index = 0;
+track.style.transform = `translateX(${-index*320}px)`;
+});
+prevBtn.addEventListener('click', ()=>{
+index--;
+if(index < 0) index = track.children.length-1;
+track.style.transform = `translateX(${-index*320}px)`;
 });
 </script>
 
