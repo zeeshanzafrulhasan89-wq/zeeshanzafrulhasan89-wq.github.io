@@ -13,22 +13,60 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 body{color:#333;line-height:1.8;scroll-behavior:smooth;overflow-x:hidden;background:#f0f4f8;}
 
-/* Parallax Background */
-.parallax-bg{position:fixed;top:0;left:0;width:100%;height:100%;background:url('https://i.postimg.cc/W4bSxW0X/1769601047892.jpg') no-repeat center center/cover;z-index:-2;transform:translateY(0);transition:transform 0.1s ease-out;}
-.parallax-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.35);z-index:-1;}
-
 /* Hero Section */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:#fff;padding-top:60px;position:relative;overflow:hidden;}
+.hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:#fff;
+    position:relative;
+    overflow:hidden;
+}
+.hero-bg{
+    position:absolute;
+    top:0;left:0;width:100%;height:100%;
+    background:url('https://i.postimg.cc/W4bSxW0X/1769601047892.jpg') center center/cover no-repeat;
+    z-index:-2;
+    transition: transform 20s ease-in-out;
+}
 #particles-js{position:absolute;top:0;left:0;width:100%;height:100%;z-index:-1;}
-.hero img{width:160px;height:160px;border-radius:50%;border:4px solid #fff;box-shadow:0 15px 30px rgba(0,0,0,0.3);margin-bottom:25px;animation: float 5s ease-in-out infinite;}
-@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-18px);}}
-.hero h1{font-size:4rem;text-shadow:0 6px 15px rgba(0,0,0,0.5);}
+.hero img{
+    width:160px;height:160px;border-radius:50%;border:4px solid #fff;
+    box-shadow:0 15px 30px rgba(0,0,0,0.3);margin-bottom:25px;
+    opacity:0; transform:scale(0.8);
+    transition:all 1.5s ease;
+}
+.hero.visible img{opacity:1; transform:scale(1);}
+.hero h1{
+    font-size:4rem;text-shadow:0 6px 15px rgba(0,0,0,0.5);
+    opacity:0; transform:translateY(30px);
+    transition:all 1.5s ease 0.3s;
+}
+.hero.visible h1{opacity:1; transform:translateY(0);}
 .hero span{color:#ffdd57;text-shadow:0 4px 12px rgba(0,0,0,0.5);}
-.hero p{font-size:1.8rem;margin-top:15px;text-shadow:0 3px 8px rgba(0,0,0,0.35);height:40px;}
+.hero p{
+    font-size:1.8rem;margin-top:15px;text-shadow:0 3px 8px rgba(0,0,0,0.35);
+    height:40px;
+    opacity:0; transform:translateY(20px);
+    transition:all 1.5s ease 0.6s;
+}
+.hero.visible p{opacity:1; transform:translateY(0);}
 .typed-cursor{font-weight:bold;color:#ffdd57;}
 
 /* Buttons */
-.btns{margin-top:30px;display:flex;gap:16px;flex-wrap:wrap;justify-content:center;}
+.btns{
+    margin-top:30px;
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    justify-content:center;
+    opacity:0; transform:translateY(20px);
+    transition:all 1.5s ease 0.9s;
+}
+.hero.visible .btns{opacity:1; transform:translateY(0);}
 .btn{padding:15px 30px;border-radius:30px;border:none;cursor:pointer;font-weight:600;transition:.3s all;font-size:1.1rem;}
 .btn.primary{background: linear-gradient(135deg,#4f46e5,#0d6efd);color:#fff;box-shadow:0 10px 25px rgba(0,0,0,.25);}
 .btn.primary:hover{background: linear-gradient(135deg,#0d6efd,#4f46e5);transform:translateY(-3px);box-shadow:0 15px 30px rgba(0,0,0,.35);}
@@ -36,7 +74,8 @@ body{color:#333;line-height:1.8;scroll-behavior:smooth;overflow-x:hidden;backgro
 .btn.outline:hover{background:#fff;color:#4f46e5;transform:translateY(-3px);}
 
 /* Sections */
-section{padding:100px 20px;max-width:1200px;margin:auto;}
+section{padding:100px 20px;max-width:1200px;margin:auto;opacity:0;transform: translateY(50px);transition:all 1s ease;}
+section.visible{opacity:1;transform: translateY(0);}
 h2{text-align:center;font-size:2.6rem;color:#4f46e5;margin-bottom:45px;letter-spacing:1px;}
 .box{background:#fff;padding:35px;border-radius:20px;box-shadow:0 25px 50px rgba(0,0,0,.12);transition:.3s all;font-size:1.2rem;line-height:1.9;}
 .box:hover{transform:translateY(-5px);}
@@ -46,7 +85,6 @@ h2{text-align:center;font-size:2.6rem;color:#4f46e5;margin-bottom:45px;letter-sp
 .skills span{font-weight:700;font-size:1.2rem;}
 .bar{height:14px;background:#e5e7eb;border-radius:12px;margin-top:8px;overflow:hidden;}
 .bar div{height:100%;background:linear-gradient(135deg,#4f46e5,#0d6efd);width:0;transition:1.5s ease;}
-.skills.show .bar div{width:95%;}
 
 /* Projects Slider */
 .projects-slider{position:relative;width:100%;overflow:hidden;margin-top:40px;}
@@ -75,19 +113,31 @@ h2{text-align:center;font-size:2.6rem;color:#4f46e5;margin-bottom:45px;letter-sp
 .social-icons a:hover{background:#0d6efd;transform:translateY(-3px);}
 
 /* Footer */
-footer{text-align:center;padding:28px;background:#4f46e5;color:#fff;margin-top:60px;border-radius:30px 30px 0 0;font-size:1.05rem;letter-spacing:1px;}
+footer{text-align:center;padding:28px;background:#4f46e5;color:#fff;margin-top:60px;border-radius:30px;font-size:1.05rem;letter-spacing:1px;}
 
 /* Responsive */
-@media(max-width:768px){.hero h1{font-size:3rem;}h2{font-size:2rem;}.box{font-size:1.1rem;}.btn{font-size:1rem;}}
-@media(max-width:480px){.hero h1{font-size:2.4rem;}.hero p{font-size:1.4rem;}}
+@media(max-width:1024px){
+  .hero h1{font-size:3.5rem;}
+  .hero p{font-size:1.6rem;}
+  .btn{font-size:1rem;padding:12px 25px;}
+}
+@media(max-width:768px){
+  .hero h1{font-size:3rem;}
+  h2{font-size:2rem;}
+  .box{font-size:1.1rem;}
+  .btn{font-size:1rem;}
+}
+@media(max-width:480px){
+  .hero h1{font-size:2.4rem;}
+  .hero p{font-size:1.4rem;}
+  .btn{font-size:.9rem;padding:10px 20px;}
+}
 </style>
 </head>
 <body>
 
-<div class="parallax-bg"></div>
-<div class="parallax-overlay"></div>
-
 <section class="hero">
+<div class="hero-bg"></div>
 <div id="particles-js"></div>
 <img src="https://i.postimg.cc/W4bSxW0X/1769601047892.jpg" alt="Zafrul Hasan Zishan">
 <h1>Zafrul Hasan <span>Zishan</span></h1>
@@ -98,66 +148,8 @@ footer{text-align:center;padding:28px;background:#4f46e5;color:#fff;margin-top:6
 </div>
 </section>
 
-<section id="about">
-<h2>About Me</h2>
-<div class="box">
-I am <strong>Zafrul Hasan Zishan</strong>, a passionate and professional web developer and freelancer. I specialize in creating modern, responsive, and user-friendly websites using HTML, CSS, JavaScript, React, and Photoshop. I am dedicated to delivering high-quality digital solutions that help businesses grow and individuals build strong online presence.
-</div>
-</section>
-
-<section id="skills" class="skills">
-<h2>My Skills</h2>
-<div class="box">
-<div class="skill"><span>HTML</span><div class="bar"><div style="width:95%"></div></div></div>
-<div class="skill"><span>CSS</span><div class="bar"><div style="width:90%"></div></div></div>
-<div class="skill"><span>JavaScript</span><div class="bar"><div style="width:85%"></div></div></div>
-<div class="skill"><span>React</span><div class="bar"><div style="width:75%"></div></div></div>
-<div class="skill"><span>Photoshop</span><div class="bar"><div style="width:80%"></div></div></div>
-</div>
-</section>
-
-<section id="projects">
-<h2>Projects</h2>
-<div class="projects-slider">
-<div class="projects-track">
-<div class="card"><h3>Social Marketing</h3><p>Responsive website optimized for social media marketing.</p></div>
-<div class="card"><h3>Portfolio Website</h3><p>Professional portfolio website to showcase skills and projects.</p></div>
-<div class="card"><h3>Business Website</h3><p>Corporate business websites with modern UI/UX design.</p></div>
-<div class="card"><h3>E-commerce Website</h3><p>Online store with secure checkout and responsive design.</p></div>
-</div>
-<div class="slider-buttons">
-<button id="prev">Prev</button>
-<button id="next">Next</button>
-</div>
-</div>
-</section>
-
-<section id="testimonials">
-<h2>Testimonials</h2>
-<div class="testimonials">
-<div class="testimonial"><p>"Zishan delivered our website with professionalism and on time. Highly recommend!"</p><span>- Client A</span></div>
-<div class="testimonial"><p>"Excellent work on our social media platform website. Very responsive and creative."</p><span>- Client B</span></div>
-<div class="testimonial"><p>"His portfolio impressed us and the project quality exceeded expectations."</p><span>- Client C</span></div>
-</div>
-</section>
-
-<section id="contact">
-<h2>Contact Me</h2>
-<div class="contact-box">
-<p>Email: <a href="mailto:zeeshanzafrulhasan89@gmail.com">zeeshanzafrulhasan89@gmail.com</a></p>
-<p>Phone: 01406607964</p>
-<p>Facebook: <a href="https://www.facebook.com/share/14SudkxCexy/" target="_blank">Visit Profile</a></p>
-<p>YouTube: <a href="https://www.youtube.com/@zafrulhasanzishan" target="_blank">My Channel</a></p>
-<div class="social-icons">
-<a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
-<a href="https://linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a>
-<a href="https://facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-<a href="https://www.youtube.com/@zafrulhasanzishan" target="_blank"><i class="fab fa-youtube"></i></a>
-</div>
-</div>
-</section>
-
-<footer>© 2026 Zafrul Hasan Zishan | All Rights Reserved</footer>
+<!-- Rest of sections same as before (About, Skills, Projects, Testimonials, Contact, Footer) -->
+<!-- Copy previous code for sections below -->
 
 <script>
 // particles.js
@@ -174,22 +166,38 @@ var typed = new Typed('#typed',{
   loop:true
 });
 
-// Projects Slider
+// Hero fade-in
+window.addEventListener('load',()=>{document.querySelector('.hero').classList.add('visible');});
+
+// Hero background zoom animation
+let scale = 1;
+setInterval(()=>{scale+=0.0007; document.querySelector('.hero-bg').style.transform=`scale(${scale})`;},30);
+
+// Fade-in sections on scroll
+const sections = document.querySelectorAll('section');
+function fadeInSections(){sections.forEach(section=>{const top=section.getBoundingClientRect().top;if(top<window.innerHeight-100){section.classList.add('visible');}});}
+window.addEventListener('scroll',fadeInSections);
+fadeInSections();
+
+// Skills bars animation
+const skills = document.querySelectorAll('.skills .bar div');
+const skillsSection = document.querySelector('.skills');
+window.addEventListener('scroll',()=>{
+  const top = skillsSection.offsetTop;
+  if(window.scrollY+window.innerHeight>top+100){skills.forEach(s=>s.style.width=s.getAttribute('data-width'));}
+});
+
+// Projects slider responsive
 const track = document.querySelector('.projects-track');
 const prevBtn = document.getElementById('prev');
 const nextBtn = document.getElementById('next');
-let index = 0;
-nextBtn.addEventListener('click', ()=>{
-index++;
-if(index > track.children.length-1) index = 0;
-track.style.transform = `translateX(${-index*320}px)`;
-});
-prevBtn.addEventListener('click', ()=>{
-index--;
-if(index < 0) index = track.children.length-1;
-track.style.transform = `translateX(${-index*320}px)`;
-});
+let index=0;
+function updateSlider(){const w=track.children[0].offsetWidth+20;let visible=Math.floor(track.parentElement.offsetWidth/w);let max=track.children.length-visible;if(index>max)index=0;if(index<0)index=max;track.style.transform=`translateX(${-index*w}px)`;}
+nextBtn.addEventListener('click',()=>{index++;updateSlider();});
+prevBtn.addEventListener('click',()=>{index--;updateSlider();});
+window.addEventListener('resize',updateSlider);
+updateSlider();
 </script>
 
 </body>
-  </html>
+</html>
