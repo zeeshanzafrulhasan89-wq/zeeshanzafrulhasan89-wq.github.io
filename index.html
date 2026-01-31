@@ -60,13 +60,6 @@ body{line-height:1.8;scroll-behavior:smooth;overflow-x:hidden;transition:0.3s;ba
 .btn.outline{border:2px solid #fff;background:transparent;color:#fff;}
 .btn.outline:hover{background:#fff;color:#4f46e5;transform:translateY(-3px);}
 
-/* ===== Theme Toggle ===== */
-#mode-toggle{
-  position:fixed;top:20px;right:20px;z-index:1000;
-  background:#ffdd57;color:#0d1b2a;padding:10px 14px;border-radius:25px;cursor:pointer;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.3);transition:.3s;
-}
-#mode-toggle:hover{transform:translateY(-3px);}
-
 /* ===== Sections ===== */
 section{padding:100px 20px;max-width:1200px;margin:auto;}
 h2{text-align:center;font-size:2.6rem;color:#ffdd57;margin-bottom:45px;letter-spacing:1px;}
@@ -132,7 +125,6 @@ footer{text-align:center;padding:28px;background:#4f46e5;color:#fff;margin-top:6
 </head>
 <body class="dark-mode">
 
-<div id="mode-toggle">Toggle Theme</div>
 <div class="parallax-bg"></div>
 <div class="parallax-overlay"></div>
 
@@ -147,10 +139,78 @@ footer{text-align:center;padding:28px;background:#4f46e5;color:#fff;margin-top:6
 </div>
 </section>
 
+<!-- About -->
+<section id="about">
+<h2>About Me</h2>
+<div class="box">
+I am <strong>Zafrul Hasan Zishan</strong>, a passionate and professional web developer and freelancer. I specialize in creating modern, responsive, and user-friendly websites using HTML, CSS, JavaScript, React, and Photoshop.
+</div>
+</section>
+
+<!-- Skills -->
+<section id="skills" class="skills">
+<h2>My Skills</h2>
+<div class="box">
+<div class="skill"><span>HTML</span><div class="bar"><div data-width="95%"></div></div></div>
+<div class="skill"><span>CSS</span><div class="bar"><div data-width="90%"></div></div></div>
+<div class="skill"><span>JavaScript</span><div class="bar"><div data-width="85%"></div></div></div>
+<div class="skill"><span>React</span><div class="bar"><div data-width="75%"></div></div></div>
+<div class="skill"><span>Photoshop</span><div class="bar"><div data-width="80%"></div></div></div>
+</div>
+</section>
+
+<!-- Projects -->
+<section id="projects">
+<h2>Projects</h2>
+<div class="projects-slider">
+<div class="projects-track">
+<div class="card"><h3>Social Marketing</h3><p>Responsive website optimized for social media marketing.</p></div>
+<div class="card"><h3>Portfolio Website</h3><p>Professional portfolio website to showcase skills and projects.</p></div>
+<div class="card"><h3>Business Website</h3><p>Corporate business websites with modern UI/UX design.</p></div>
+<div class="card"><h3>E-commerce Website</h3><p>Online store with secure checkout and responsive design.</p></div>
+</div>
+<div class="slider-buttons">
+<button id="prev">Prev</button>
+<button id="next">Next</button>
+</div>
+</div>
+</section>
+
+<!-- Testimonials -->
+<section id="testimonials">
+<h2>Testimonials</h2>
+<div class="testimonials">
+<div class="testimonial"><p>"Zishan delivered our website with professionalism and on time. Highly recommend!"</p><span>- Client A</span></div>
+<div class="testimonial"><p>"Excellent work on our social media platform website. Very responsive and creative."</p><span>- Client B</span></div>
+<div class="testimonial"><p>"His portfolio impressed us and the project quality exceeded expectations."</p><span>- Client C</span></div>
+</div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+<h2>Contact Me</h2>
+<div class="contact-box">
+<form id="contact-form">
+<input type="text" name="name" placeholder="Your Name" required>
+<input type="email" name="email" placeholder="Your Email" required>
+<input type="text" name="title" placeholder="Subject" required>
+<textarea name="message" placeholder="Your Message" required></textarea>
+<button type="submit" class="btn primary">Send Message</button>
+</form>
+<p id="msg" style="margin-top:12px;color:#00ff00;"></p>
+<div class="social-icons">
+<a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
+<a href="https://linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a>
+<a href="https://facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+<a href="https://www.youtube.com/@zafrulhasanzishan" target="_blank"><i class="fab fa-youtube"></i></a>
+</div>
+</div>
+</section>
+
 <footer>© 2026 Zafrul Hasan Zishan | All Rights Reserved</footer>
 <a href="https://wa.me/8801406607964" target="_blank" class="whatsapp-btn"><i class="fab fa-whatsapp"></i></a>
 
-<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
 // Typed.js
 var typed = new Typed('#typed',{
@@ -160,64 +220,57 @@ var typed = new Typed('#typed',{
   loop:true
 });
 
-// Custom 3D Particles using Three.js
-let scene = new THREE.Scene();
-let camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 2000);
-camera.position.z = 1000;
-
-let renderer = new THREE.WebGLRenderer({alpha:true});
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.getElementById('particles-js').appendChild(renderer.domElement);
-
-let particles = [];
-let geometry = new THREE.BufferGeometry();
-let particleCount = 500;
-let positions = [];
-let colors = [];
-let colorPalette = [0xffdd57,0x4ade80,0x4f46e5,0xf87171];
-
-for(let i=0;i<particleCount;i++){
-  positions.push((Math.random()-0.5)*2000); // x
-  positions.push((Math.random()-0.5)*2000); // y
-  positions.push((Math.random()-0.5)*2000); // z
-  let color = new THREE.Color(colorPalette[Math.floor(Math.random()*colorPalette.length)]);
-  colors.push(color.r, color.g, color.b);
-}
-geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions,3));
-geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors,3));
-
-let material = new THREE.PointsMaterial({size:5, vertexColors:true, transparent:true, opacity:0.8});
-let points = new THREE.Points(geometry, material);
-scene.add(points);
-
-let mouseX=0, mouseY=0;
-document.addEventListener('mousemove', e=>{
-  mouseX = (e.clientX - window.innerWidth/2)/2;
-  mouseY = (e.clientY - window.innerHeight/2)/2;
+// New colorful particles config
+particlesJS("particles-js", {
+  "particles": {
+    "number": {"value":100,"density":{"enable":true,"value_area":900}},
+    "color": {"value":["#ffdd57","#4ade80","#4f46e5","#f87171"]},
+    "shape":{"type":"circle"},
+    "opacity":{"value":0.7,"random":true,"anim":{"enable":true,"speed":1,"opacity_min":0.3,"sync":false}},
+    "size":{"value":4,"random":true,"anim":{"enable":true,"speed":4,"size_min":1,"sync":false}},
+    "line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.2,"width":1},
+    "move":{"enable":true,"speed":2,"direction":"none","random":true,"straight":false,"out_mode":"out"}
+  },
+  "interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"repulse"},"onclick":{"enable":true,"mode":"push"}},"modes":{"repulse":{"distance":100,"duration":0.4},"push":{"particles_nb":4}}},
+  "retina_detect":true
 });
 
-function animate(){
-  requestAnimationFrame(animate);
-  points.rotation.y += 0.001;
-  points.rotation.x += 0.0005;
-  points.position.x += (mouseX - points.position.x)*0.01;
-  points.position.y += (-mouseY - points.position.y)*0.01;
-  renderer.render(scene, camera);
-}
-animate();
-
-window.addEventListener('resize', ()=>{
-  camera.aspect = window.innerWidth/window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
+// Skills Animation
+const skills = document.querySelectorAll('.skills .bar div');
+const skillsSection = document.querySelector('.skills');
+window.addEventListener('scroll', () => {
+  const sectionTop = skillsSection.offsetTop;
+  if(window.scrollY + window.innerHeight > sectionTop + 100){
+      skills.forEach(skill => skill.style.width = skill.getAttribute('data-width'));
+  }
 });
 
-// Theme Toggle
-const modeBtn = document.getElementById('mode-toggle');
-modeBtn.addEventListener('click', ()=>{
-  document.body.classList.toggle('dark-mode');
-  document.body.classList.toggle('light-mode');
+// Projects Slider
+const track = document.querySelector('.projects-track');
+const prevBtn = document.getElementById('prev');
+const nextBtn = document.getElementById('next');
+let index = 0;
+function updateSlider(){
+    const cardWidth = track.children[0].offsetWidth + 20;
+    track.style.transform = `translateX(${-index*cardWidth}px)`;
+}
+nextBtn.addEventListener('click', ()=>{index++; if(index>track.children.length-1) index=0; updateSlider();});
+prevBtn.addEventListener('click', ()=>{index--; if(index<0) index=track.children.length-1; updateSlider();});
+window.addEventListener('resize', updateSlider);
+
+// EmailJS Integration
+emailjs.init("rUFcXvx4FuGlH0vzV");
+document.getElementById('contact-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  emailjs.sendForm('service_dywb37i','template_bavgxcd',this)
+  .then(()=>{
+      document.getElementById('msg').innerText="Message sent successfully!";
+      this.reset();
+  }, (err)=>{
+      document.getElementById('msg').innerText="Error sending message!";
+      console.log(err);
+  });
 });
 </script>
 </body>
-</html>
+                                         </html>
