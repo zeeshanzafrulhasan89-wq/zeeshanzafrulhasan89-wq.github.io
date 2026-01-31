@@ -1,154 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zafrul Hasan Zishan | Web Developer</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-<style>
-/* ===== Base Styles ===== */
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-body{color:#333;line-height:1.8;scroll-behavior:smooth;overflow-x:hidden;background:#f0f4f8;transition:0.3s;}
-.light-mode{background:#f0f4f8;color:#333;}
-.dark-mode{background:#1a1a2e;color:#fff;}
-
-/* ===== Parallax Background ===== */
-.parallax-bg{position:fixed;top:0;left:0;width:100%;height:100%;background:url('https://i.postimg.cc/W4bSxW0X/1769601047892.jpg') no-repeat center center/cover;z-index:-2;transition:transform 0.1s ease-out;}
-.parallax-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.35);z-index:-1;}
-
-/* ===== Hero Section ===== */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding-top:60px;position:relative;overflow:hidden;color:#fff;}
-#particles-js{position:absolute;top:0;left:0;width:100%;height:100%;z-index:-1;}
-.hero img{width:160px;height:160px;border-radius:50%;border:4px solid #fff;box-shadow:0 15px 30px rgba(0,0,0,0.3);margin-bottom:25px;animation: float 5s ease-in-out infinite;}
-@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-18px);}}
-.hero h1{font-size:4rem;text-shadow:0 6px 15px rgba(0,0,0,0.5);}
-.hero span{color:#ffdd57;text-shadow:0 4px 12px rgba(0,0,0,0.5);}
-.hero p{font-size:1.8rem;margin-top:15px;text-shadow:0 3px 8px rgba(0,0,0,0.35);height:40px;}
-.typed-cursor{font-weight:bold;color:#ffdd57;}
-.btns{margin-top:30px;display:flex;gap:16px;flex-wrap:wrap;justify-content:center;}
-.btn{padding:15px 30px;border-radius:30px;border:none;cursor:pointer;font-weight:600;transition:.3s all;font-size:1.1rem;}
-.btn.primary{background: linear-gradient(135deg,#4f46e5,#0d6efd);color:#fff;box-shadow:0 10px 25px rgba(0,0,0,.25);}
-.btn.primary:hover{background: linear-gradient(135deg,#0d6efd,#4f46e5);transform:translateY(-3px);box-shadow:0 15px 30px rgba(0,0,0,.35);}
-.btn.outline{border:2px solid #fff;background:transparent;color:#fff;}
-.btn.outline:hover{background:#fff;color:#4f46e5;transform:translateY(-3px);}
-
-/* ===== Sections ===== */
-section{padding:100px 20px;max-width:1200px;margin:auto;}
-h2{text-align:center;font-size:2.6rem;color:#4f46e5;margin-bottom:45px;letter-spacing:1px;}
-.box{background:#fff;padding:35px;border-radius:20px;box-shadow:0 25px 50px rgba(0,0,0,.12);transition:.3s all;font-size:1.2rem;line-height:1.9;}
-.box:hover{transform:translateY(-5px);}
-
-/* ===== Skills ===== */
-.skills .skill{margin:20px 0;}
-.skills span{font-weight:700;font-size:1.2rem;}
-.bar{height:14px;background:#e5e7eb;border-radius:12px;margin-top:8px;overflow:hidden;}
-.bar div{height:100%;background:linear-gradient(135deg,#4f46e5,#0d6efd);width:0;transition:1.5s ease;}
-
-/* ===== Projects ===== */
-.projects-slider{position:relative;width:100%;overflow:hidden;margin-top:40px;}
-.projects-track{display:flex;transition:transform 0.5s ease;}
-.card{min-width:300px;background:#fff;border-radius:20px;padding:25px;box-shadow:0 20px 50px rgba(0,0,0,.15);margin-right:20px;flex-shrink:0;text-align:center;}
-.card h3{color:#0d6efd;margin-bottom:12px;font-size:1.5rem;}
-.card p{font-size:1rem;}
-
-/* ===== Testimonials ===== */
-.testimonials{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px;margin-top:40px;}
-.testimonial{background:#fff;padding:30px;border-radius:20px;box-shadow:0 20px 50px rgba(0,0,0,.15);text-align:center;}
-.testimonial p{font-size:1.1rem;font-style:italic;margin-bottom:15px;}
-.testimonial span{font-weight:700;color:#4f46e5;font-size:1.1rem;}
-
-/* ===== Contact ===== */
-.contact-box{background:#fff;padding:35px;border-radius:20px;box-shadow:0 25px 50px rgba(0,0,0,.12);text-align:center;font-size:1.2rem;}
-.contact-box input, .contact-box textarea{width:100%;margin:10px 0;padding:12px;border-radius:12px;border:1px solid #ccc;background:#fff;color:#333;}
-.contact-box input::placeholder, .contact-box textarea::placeholder{color:rgba(0,0,0,0.5);}
-.contact-box button{margin-top:12px;background:#4f46e5;color:#fff;padding:12px 25px;border:none;border-radius:25px;cursor:pointer;font-weight:600;transition:.3s;}
-.contact-box button:hover{background:#0d6efd;transform:translateY(-2px);}
-
-/* ===== Social Icons ===== */
-.social-icons{margin-top:20px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
-.social-icons a{font-size:1.5rem;padding:12px;border-radius:50%;background:#4f46e5;color:#fff;transition:.3s;display:flex;align-items:center;justify-content:center;}
-.social-icons a:hover{background:#0d6efd;transform:translateY(-3px);}
-
-/* ===== Footer ===== */
-footer{text-align:center;padding:28px;background:#4f46e5;color:#fff;margin-top:60px;border-radius:30px;font-size:1.05rem;letter-spacing:1px;}
-
-/* ===== WhatsApp Floating ===== */
-.whatsapp-btn{position:fixed;bottom:25px;right:25px;background:#25d366;color:#fff;padding:15px 18px;border-radius:50px;font-size:1.8rem;box-shadow:0 10px 25px rgba(0,0,0,.2);z-index:1000;transition:.3s;display:flex;align-items:center;justify-content:center;}
-.whatsapp-btn:hover{transform:translateY(-3px) scale(1.1);box-shadow:0 12px 30px rgba(0,0,0,.3);}
-
-/* ===== Dark Mode Fix ===== */
-.dark-mode h1, .dark-mode p, .dark-mode h2, .dark-mode .box, .dark-mode .card, .dark-mode .testimonial, .dark-mode .contact-box input, .dark-mode .contact-box textarea, .dark-mode .testimonial span{
-    color:#fff !important;
-}
-.dark-mode .box, .dark-mode .card, .dark-mode .testimonial, .dark-mode .contact-box{
-    background:rgba(20,20,40,0.9) !important;
-}
-.dark-mode .social-icons a, .dark-mode .btn.outline{
-    color:#fff !important;
-}
-</style>
-</head>
-<body class="light-mode">
-
-<div class="parallax-bg"></div>
-<div class="parallax-overlay"></div>
-
 <!-- Hero Section -->
 <section class="hero">
-<div id="particles-js"></div>
-<img src="https://i.postimg.cc/W4bSxW0X/1769601047892.jpg" alt="Zafrul Hasan Zishan">
-<h1>Zafrul Hasan <span>Zishan</span></h1>
-<p><span id="typed"></span></p>
-<div class="btns">
-<a href="Zishan-CV.pdf" download class="btn primary">Download CV</a>
-<a href="https://www.youtube.com/@zafrulhasanzishan" target="_blank" class="btn outline">YouTube</a>
-</div>
+  <div id="particles-js"></div>
+  <!-- Subtle animated gradient overlay -->
+  <div class="hero-gradient"></div>
+
+  <img src="https://i.postimg.cc/W4bSxW0X/1769601047892.jpg" alt="Zafrul Hasan Zishan">
+  <h1>Zafrul Hasan <span>Zishan</span></h1>
+  <p><span id="typed"></span></p>
+  <div class="btns">
+    <a href="Zishan-CV.pdf" download class="btn primary">Download CV</a>
+    <a href="https://www.youtube.com/@zafrulhasanzishan" target="_blank" class="btn outline">YouTube</a>
+  </div>
 </section>
 
-<!-- About, Skills, Projects, Testimonials, Contact sections remain the same -->
+<style>
+.hero{
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+  padding-top: 60px;
+}
 
-<footer>© 2026 Zafrul Hasan Zishan | All Rights Reserved</footer>
-<a href="https://wa.me/8801406607964" target="_blank" class="whatsapp-btn"><i class="fab fa-whatsapp"></i></a>
+.hero-gradient{
+  position: absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1b2735);
+  background-size: 400% 400%;
+  animation: gradientMove 25s ease infinite;
+  z-index:-1;
+  opacity:0.7; /* subtle overlay for text readability */
+}
 
-<script>
-// Particles.js
-particlesJS("particles-js", {
-  "particles":{"number":{"value":60,"density":{"enable":true,"value_area":900}},"color":{"value":"#ffffff"},"shape":{"type":"circle"},"opacity":{"value":0.5,"random":true},"size":{"value":3,"random":true},"line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.25,"width":1},"move":{"enable":true,"speed":2,"random":true,"straight":false,"out_mode":"out"}},
-  "interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"grab"},"onclick":{"enable":true,"mode":"push"}},"modes":{"grab":{"distance":140,"line_linked":{"opacity":0.3}},"push":{"particles_nb":4}}},"retina_detect":true
-});
+@keyframes gradientMove {
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
 
-// Typed.js
-var typed = new Typed('#typed',{
-  strings:["Web Developer","Freelancer","React Developer","Front-end Developer","UI/UX Designer"],
-  typeSpeed:60,backSpeed:40,loop:true
-});
+.hero img{
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+  margin-bottom: 25px;
+  animation: float 5s ease-in-out infinite;
+}
 
-// Parallax scroll
-const parallax = document.querySelector('.parallax-bg');
-window.addEventListener('scroll', () => { parallax.style.transform = `translateY(${window.scrollY * 0.5}px)`; });
+.hero h1{
+  font-size: 4rem;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.8), 0 8px 20px rgba(0,0,0,0.6);
+}
 
-// Skills animation
-const skills = document.querySelectorAll('.skills .bar div');
-const skillsSection = document.querySelector('.skills');
-window.addEventListener('scroll', () => {
-    const sectionTop = skillsSection.offsetTop;
-    if(window.scrollY + window.innerHeight > sectionTop + 100){
-        skills.forEach(skill => skill.style.width = skill.getAttribute('data-width'));
-    }
-});
+.hero span{
+  color: #ffdd57;
+  text-shadow: 0 3px 8px rgba(0,0,0,0.7);
+}
 
-// EmailJS
-emailjs.init("rUFcXvx4FuGlH0vzV");
-document.getElementById('contact-form')?.addEventListener('submit', function(e){
-  e.preventDefault();
-  emailjs.sendForm('service_dywb37i','template_bavgxcd',this)
-  .then(()=>{alert("Message sent successfully!"); this.reset();}, (err)=>{alert("Error sending message!"); console.log(err);});
-});
-</script>
-</body>
-</html>
+.hero p{
+  font-size: 1.8rem;
+  margin-top: 15px;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+  min-height: 40px;
+}
+
+.typed-cursor{
+  font-weight: bold;
+  color: #ffdd57;
+}
+
+/* Float animation for image */
+@keyframes float{
+  0%,100%{transform: translateY(0);}
+  50%{transform: translateY(-18px);}
+}
+                            </style>
